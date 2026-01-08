@@ -1061,7 +1061,7 @@ steps:
                 <p>여러 환경 조합을 한번에 테스트 (아래 예: 3 Node버전 × 2 OS = 6개 병렬 실행)</p>
                 <pre><code>strategy:
   matrix:
-    node: [16, 18, 20]      # 테스트할 Node.js 버전들
+    node: [18, 20, 22]      # 테스트할 Node.js 버전들
     os: [ubuntu-latest, windows-latest]  # 테스트할 OS들
 
 runs-on: ${{ matrix.os }}   # 각 OS에서 실행
