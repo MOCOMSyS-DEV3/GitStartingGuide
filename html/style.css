@@ -89,8 +89,8 @@ body {
   transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
   pointer-events: none;
   visibility: hidden;
-  overflow-y: auto;
-  padding-top: 2rem;
+  overflow-y: hidden;
+  padding-top: 1.5vh;
 }
 
 .slide.active {
@@ -113,60 +113,74 @@ body {
 /* Content Box - Full Screen */
 .content-box {
   background: transparent;
-  padding: 2rem 4rem;
+  padding: 1.5vh 4vw 1.5vh 80px;
   text-align: left;
   width: 100%;
-  padding-bottom: 3rem;
+  max-height: calc(100vh - 3vh);
+  overflow: hidden;
 }
 
 .content-box.center {
   text-align: center;
 }
 
-/* Typography - Optimized for 80" screen at 5m viewing distance */
+/* Intro and End slides - vertically centered */
+.slide[data-id="intro"],
+.slide[data-id="end"] {
+  align-items: center;
+  padding-top: 0;
+}
+
+.slide[data-id="intro"] .content-box,
+.slide[data-id="end"] .content-box {
+  padding-left: 4vw;
+  text-align: center;
+}
+
+/* Typography - Responsive for various screen sizes */
 h1 {
-  font-size: 5.5rem;
-  margin-bottom: 1rem;
+  font-size: clamp(3rem, 7vh, 5.5rem);
+  margin-bottom: 1.5vh;
   font-weight: 700;
 }
 
 h2 {
-  font-size: 3.5rem;
-  margin-bottom: 1.2rem;
+  font-size: clamp(2rem, 5vh, 3.5rem);
+  margin-bottom: 1.5vh;
   color: var(--accent-color);
 }
 
 h3 {
-  font-size: 2.2rem;
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
+  font-size: clamp(1.3rem, 3vh, 2.2rem);
+  margin-top: 1.5vh;
+  margin-bottom: 0.8vh;
   color: #e2e8f0;
 }
 
 h4 {
-  font-size: 1.8rem;
-  margin-top: 0.8rem;
-  margin-bottom: 0.4rem;
+  font-size: clamp(1.1rem, 2.5vh, 1.8rem);
+  margin-top: 1vh;
+  margin-bottom: 0.5vh;
   color: #e2e8f0;
 }
 
 p {
-  font-size: 1.8rem;
-  line-height: 1.6;
+  font-size: clamp(1rem, 2.2vh, 1.8rem);
+  line-height: 1.5;
   color: #cbd5e1;
-  margin-bottom: 0.6rem;
+  margin-bottom: 1vh;
 }
 
 li {
-  font-size: 1.7rem;
+  font-size: clamp(0.95rem, 2.1vh, 1.7rem);
   line-height: 1.5;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.5vh;
 }
 
 .subtitle {
-  font-size: 2.2rem;
+  font-size: clamp(1.4rem, 3vh, 2.2rem);
   color: #94a3b8;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2vh;
 }
 
 .gradient-text {
@@ -179,9 +193,9 @@ li {
 /* UI Elements */
 .badgem {
   background: rgba(255, 255, 255, 0.1);
-  padding: 0.6rem 1.2rem;
+  padding: clamp(0.4rem, 0.8vh, 0.6rem) clamp(0.8rem, 1.2vw, 1.2rem);
   border-radius: 9999px;
-  font-size: 1.2rem;
+  font-size: clamp(0.8rem, 1.6vh, 1.2rem);
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -238,38 +252,38 @@ li {
 /* Code Blocks */
 pre {
   background: #1e293b;
-  padding: 1.2rem;
+  padding: clamp(0.6rem, 1.2vh, 1rem);
   border-radius: 12px;
   overflow-x: auto;
-  margin: 0.8rem 0;
+  margin: 0.7vh 0;
   border: 1px solid #334155;
   font-family: "Fira Code", monospace;
-  font-size: 1.4rem;
-  line-height: 1.5;
+  font-size: clamp(0.95rem, 1.8vh, 1.4rem);
+  line-height: 1.4;
 }
 code {
   font-family: "Fira Code", monospace;
   color: #e2e8f0;
-  font-size: 1.4rem;
+  font-size: clamp(0.95rem, 1.8vh, 1.4rem);
 }
 .cmd {
   color: #a5b4fc;
-  font-size: 1.4rem;
+  font-size: clamp(0.95rem, 1.8vh, 1.4rem);
 }
 
 /* Tables */
 table {
   width: 100%;
   border-collapse: collapse;
-  margin: 1rem 0;
+  margin: 1.5vh 0;
   background: rgba(0, 0, 0, 0.3);
   border-radius: 12px;
   overflow: hidden;
-  font-size: 1.6rem;
+  font-size: clamp(0.95rem, 2vh, 1.6rem);
 }
 th,
 td {
-  padding: 1rem 1.5rem;
+  padding: clamp(0.6rem, 1.2vh, 1rem) clamp(0.8rem, 1.5vw, 1.5rem);
   text-align: left;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
@@ -277,7 +291,7 @@ th {
   background: rgba(255, 255, 255, 0.08);
   font-weight: 600;
   color: var(--accent-color);
-  font-size: 1.6rem;
+  font-size: clamp(0.95rem, 2vh, 1.6rem);
 }
 tr:last-child td {
   border-bottom: none;
@@ -286,25 +300,25 @@ tr:last-child td {
 /* Utilities & Specific Layouts */
 .flow-container {
     display: flex;
-    gap: 2rem;
+    gap: clamp(1rem, 2vw, 2rem);
     align-items: center;
     justify-content: center;
-    margin: 2rem 0;
+    margin: 2vh 0;
 }
 
 .flow-steps {
     font-weight: 700;
-    font-size: 1.6rem;
+    font-size: clamp(0.95rem, 2vh, 1.6rem);
     display: flex;
     justify-content: space-between;
-    margin-top: 1rem;
+    margin-top: 1.5vh;
     color: var(--accent-color);
 }
 
 .grid-2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+    gap: clamp(1rem, 2vw, 2rem);
 }
 
 .placeholder-img {
@@ -320,18 +334,18 @@ tr:last-child td {
 }
 
 .list-indented {
-    margin-left: 2rem;
-    margin-bottom: 2rem;
+    margin-left: clamp(1rem, 2vw, 2rem);
+    margin-bottom: 1.5vh;
     color: #cbd5e1;
 }
 
 .mt-2 {
-    margin-top: 2rem;
+    margin-top: 2vh;
 }
 
 .img-container {
     width: 100%;
-    height: 250px;
+    height: clamp(280px, 52vh, 480px);
     border-radius: 12px;
     overflow: hidden;
     border: 1px solid var(--glass-border);
@@ -344,62 +358,43 @@ tr:last-child td {
 .img-container img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: top center;
-}
-
-.img-container {
-    width: 100%;
-    height: 250px;
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid var(--glass-border);
-    background: rgba(0,0,0,0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.img-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top center;
+    object-fit: contain;
+    object-position: center;
 }
 
 .step-card {
     background: rgba(255, 255, 255, 0.05);
-    padding: 1.2rem;
-    border-radius: 16px;
+    padding: clamp(0.8rem, 1.5vh, 1.2rem);
+    border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: transform 0.3s ease;
 }
 
 .step-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
     background: rgba(255, 255, 255, 0.1);
 }
 
 .step-card h3 {
     margin-top: 0;
-    margin-bottom: 0.3rem;
-    font-size: 1.3rem;
+    margin-bottom: 0.5vh;
+    font-size: clamp(1rem, 2vh, 1.3rem);
     color: var(--accent-color);
 }
 
 .step-card .desc {
-    font-size: 1.15rem;
+    font-size: clamp(0.85rem, 1.7vh, 1.15rem);
     color: #cbd5e1;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.6vh;
     line-height: 1.4;
 }
 
 .step-card .cmd {
     display: block;
     background: rgba(0, 0, 0, 0.3);
-    padding: 0.4rem;
+    padding: 0.5vh 0.5rem;
     border-radius: 6px;
-    font-size: 1rem;
+    font-size: clamp(0.85rem, 1.6vh, 1rem);
     font-family: 'Fira Code', monospace;
     color: #a5b4fc;
 }
@@ -462,6 +457,28 @@ tr:last-child td {
     color: var(--accent-color);
 }
 
+.toc-filter-btn {
+    background: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: all 0.2s ease;
+    padding: 0.2rem 0.4rem;
+    margin-left: auto;
+}
+
+.toc-filter-btn:hover {
+    opacity: 0.8;
+}
+
+.toc-filter-btn.active {
+    opacity: 1;
+    background: rgba(59, 130, 246, 0.2);
+    border-color: var(--accent-color);
+}
+
 .toc-close-btn {
     background: none;
     border: none;
@@ -474,6 +491,11 @@ tr:last-child td {
 
 .toc-close-btn:hover {
     opacity: 1;
+}
+
+/* Filter mode - hide non-essential items */
+.toc-nav.filter-active .toc-item:not(.essential) {
+    display: none;
 }
 
 .toc-nav {
