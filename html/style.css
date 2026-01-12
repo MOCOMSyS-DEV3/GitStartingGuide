@@ -2,10 +2,22 @@
   --bg-color: #0f172a;
   --text-color: #f8fafc;
   --accent-color: #38bdf8;
+  --link-color: #fbbf24;
   --glass-bg: rgba(30, 41, 59, 0.7);
   --glass-border: rgba(255, 255, 255, 0.1);
   --gradient-1: #4f46e5;
   --gradient-2: #06b6d4;
+}
+
+/* Links */
+a {
+  color: var(--link-color);
+  text-decoration: underline;
+  transition: opacity 0.2s;
+}
+
+a:hover {
+  opacity: 0.8;
 }
 
 * {
