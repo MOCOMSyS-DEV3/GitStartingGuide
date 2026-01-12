@@ -77,12 +77,13 @@
                         </tr>
                         <tr>
                             <td><strong>데이터 무결성</strong></td>
-                            <td>SHA-1 체크섬으로 완벽 보장</td>
+                            <td>SHA-1 체크섬으로 강력히 보장</td>
                             <td>상대적으로 취약</td>
                         </tr>
                     </tbody>
                 </table>
                 <p>Git은 <strong>"내 컴퓨터에도 서버의 모든 데이터가 있다"</strong>는 점이 핵심입니다.</p>
+                <p style="font-size: 0.75rem; opacity: 0.7; margin-top: 1rem;">* SHA-1은 Git 3.0 (2026년 목표)부터 SHA-256으로 기본값 변경 예정. 현재 Git 2.51+에서 SHA-256 지원 중.</p>
             </div>
         </div>
 
@@ -738,61 +739,65 @@ git pull --rebase origin main</code></pre>
             </div>
         </div>
 
-        <!-- Slide 11: Remote & Workflow -->
+        <!-- Slide 11: GitHub Flow (Remote 연결 + 협업 흐름) -->
         <div class="slide" data-id="workflow">
             <div class="content-box glass">
                 <span class="badgem">Workflow</span>
-                <h2>협업의 시작: Remote & Flow</h2>
-                <p>로컬 저장소를 원격(GitHub)에 연결하고 협업하는 과정입니다.</p>
+                <h2>협업의 시작: GitHub Flow</h2>
+                <p>로컬 저장소를 원격에 연결하고 협업하는 표준 흐름입니다.</p>
 
-                <pre><code># 원격 저장소 연결 (딱 한번만)
+                <!-- 원격 연결 (간략화) -->
+                <pre style="margin-bottom: 1rem;"><code># 원격 저장소 연결 & 코드 올리기
 git remote add origin https://github.com/user/repo.git
-
-# 코드 올리기 (Push)
 git push -u origin main</code></pre>
 
-                <h3>Standard GitHub Flow</h3>
-                <div class="flow-steps">
-                    <span>1. Create Branch</span>
-                    <span>2. Commit</span>
-                    <span>3. Push</span>
-                    <span>4. Open PR</span>
-                    <span>5. Merge</span>
+                <!-- 5단계 흐름 다이어그램 -->
+                <div style="background: rgba(0,0,0,0.3); padding: 0.8rem 1rem; border-radius: 12px; margin-bottom: 1rem; font-family: 'Consolas', monospace; font-size: 0.65rem; line-height: 1.5; overflow-x: auto;">
+<pre style="margin: 0; color: #e2e8f0;"><span style="color: #4a90e2;">main</span>     ──●───────────────────────────────────●──▶ <span style="opacity:0.6;">배포 가능</span>
+             │                                                                      ▲
+             │ <span style="color: #f1c40f;">①branch</span>                                                   <span style="color: #9b59b6;">⑤merge</span>   │
+             ▼                                                                      │
+<span style="color: #e74c3c;">feature</span>  ──●────●────●────────●────────────────┘
+             <span style="color: #f1c40f;">②</span>        <span style="color: #f1c40f;">②</span>        <span style="color: #2ecc71;">③</span>                <span style="color: #3498db;">④</span>
+          <span style="opacity:0.5;">commit      commit    push              PR+Review</span></pre>
                 </div>
-            </div>
-        </div>
 
-        <!-- Slide 7-1: GitHub Flow Detail -->
-        <div class="slide" data-id="workflow-detail">
-            <div class="content-box glass">
-                <span class="badgem">Deep Dive</span>
-                <h2>GitHub Flow 완벽 해부</h2>
-                <p>협업의 표준, 5단계 흐름을 상세히 알아봅니다.</p>
+                <!-- 5단계 카드 그리드 -->
+                <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.6rem;">
+                    <div style="background: rgba(255,255,255,0.05); padding: 0.8rem; border-radius: 10px; text-align: center;">
+                        <div style="font-size: 1.8rem;">🌿</div>
+                        <div style="font-size: 1rem; font-weight: 600; color: var(--accent-color);">① Branch</div>
+                        <div style="font-size: 0.8rem; opacity: 0.7; margin-top: 0.3rem;">격리된 작업 공간</div>
+                        <code style="font-size: 1.4rem; display: block; margin-top: 0.4rem;">git switch -c feat</code>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.05); padding: 0.8rem; border-radius: 10px; text-align: center;">
+                        <div style="font-size: 1.8rem;">💾</div>
+                        <div style="font-size: 1rem; font-weight: 600; color: var(--accent-color);">② Commit</div>
+                        <div style="font-size: 0.8rem; opacity: 0.7; margin-top: 0.3rem;">의미 단위 기록</div>
+                        <code style="font-size: 1.4rem; display: block; margin-top: 0.4rem;">git commit -m "..."</code>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.05); padding: 0.8rem; border-radius: 10px; text-align: center;">
+                        <div style="font-size: 1.8rem;">☁️</div>
+                        <div style="font-size: 1rem; font-weight: 600; color: var(--accent-color);">③ Push</div>
+                        <div style="font-size: 0.8rem; opacity: 0.7; margin-top: 0.3rem;">원격에 공유</div>
+                        <code style="font-size: 1.4rem; display: block; margin-top: 0.4rem;">git push origin feat</code>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.05); padding: 0.8rem; border-radius: 10px; text-align: center;">
+                        <div style="font-size: 1.8rem;">🔍</div>
+                        <div style="font-size: 1rem; font-weight: 600; color: var(--accent-color);">④ PR</div>
+                        <div style="font-size: 0.8rem; opacity: 0.7; margin-top: 0.3rem;">리뷰 요청 + CI</div>
+                        <code style="font-size: 1.4rem; display: block; margin-top: 0.4rem;">gh pr create</code>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.05); padding: 0.8rem; border-radius: 10px; text-align: center;">
+                        <div style="font-size: 1.8rem;">✅</div>
+                        <div style="font-size: 1rem; font-weight: 600; color: var(--accent-color);">⑤ Merge</div>
+                        <div style="font-size: 0.8rem; opacity: 0.7; margin-top: 0.3rem;">Main에 통합</div>
+                        <code style="font-size: 1.4rem; display: block; margin-top: 0.4rem;">Approve → Merge</code>
+                    </div>
+                </div>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-top: 1rem;">
-                    <div class="step-card">
-                        <h3>1. Create Branch</h3>
-                        <p class="desc"><strong>Why?</strong> 메인 코드를 건드리지 않고 안전하게 작업하기 위해.</p>
-                        <code class="cmd">git switch -c feat-login</code>
-                    </div>
-                    <div class="step-card">
-                        <h3>2. Commit</h3>
-                        <p class="desc"><strong>Why?</strong> 작업의 의미있는 단위를 기록(Save)하기 위해.</p>
-                        <code class="cmd">git commit -m "Add login"</code>
-                    </div>
-                    <div class="step-card">
-                        <h3>3. Push</h3>
-                        <p class="desc"><strong>Why?</strong> 내 컴퓨터의 코드를 GitHub(원격)에 공유하기 위해.</p>
-                        <code class="cmd">git push origin feat-login</code>
-                    </div>
-                    <div class="step-card" style="grid-column: span 1.5;">
-                        <h3>4. Open PR (Pull Request)</h3>
-                        <p class="desc"><strong>Why?</strong> "내 코드를 검토해주고 합쳐주세요"라고 요청하는 것.<br>코드 리뷰와 자동 테스트(CI)가 여기서 일어납니다.</p>
-                    </div>
-                    <div class="step-card" style="grid-column: span 1.5;">
-                        <h3>5. Merge</h3>
-                        <p class="desc"><strong>Why?</strong> 검증된 코드를 메인(Main) 브랜치에 정식으로 통합하는 것.<br>이제 모든 팀원이 변경 사항을 갖게 됩니다.</p>
-                    </div>
+                <div style="background: rgba(255,255,255,0.05); padding: 0.6rem 1rem; border-radius: 10px; margin-top: 0.8rem; font-size: 1.5rem; text-align: center;">
+                    💡 <strong>핵심</strong>: Main은 항상 배포 가능한 상태 유지 → 모든 작업은 Branch에서!
                 </div>
             </div>
         </div>
@@ -1028,7 +1033,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v5
     - run: npm install
     - run: npm test</code></pre>
             </div>
@@ -1324,16 +1329,34 @@ updates:
                 </div>
 
                 <h3 style="margin-top: 1rem;">🔐 필수 보안 설정</h3>
-                <div class="flow-steps">
-                    <span>2FA 필수화</span>
-                    <span>SSO 연동</span>
-                    <span>IP 허용목록</span>
-                    <span>감사 로그 보관</span>
-                </div>
 
-                <p style="margin-top: 1rem; font-size: 0.9em; color: var(--text-muted);">
-                    💡 <strong>Settings → Security → Security log</strong>에서 전체 감사 로그 확인 가능
-                </p>
+                <!-- 보안 설정 다이어그램 -->
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.8rem; margin-top: 1rem;">
+                    <div style="background: linear-gradient(135deg, rgba(239,68,68,0.2), rgba(239,68,68,0.05)); padding: 1rem; border-radius: 12px; text-align: center; border: 1px solid rgba(239,68,68,0.3);">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔑</div>
+                        <div style="font-size: 1rem; font-weight: 600; color: #ef4444;">2FA 필수화</div>
+                        <div style="font-size: 0.75rem; opacity: 0.8; margin-top: 0.3rem;">모든 멤버 2단계 인증</div>
+                        <code style="font-size: 0.65rem; display: block; margin-top: 0.5rem; opacity: 0.7;">Settings → Authentication</code>
+                    </div>
+                    <div style="background: linear-gradient(135deg, rgba(245,158,11,0.2), rgba(245,158,11,0.05)); padding: 1rem; border-radius: 12px; text-align: center; border: 1px solid rgba(245,158,11,0.3);">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🏢</div>
+                        <div style="font-size: 1rem; font-weight: 600; color: #f59e0b;">SSO 연동</div>
+                        <div style="font-size: 0.75rem; opacity: 0.8; margin-top: 0.3rem;">회사 ID 공급자 연결</div>
+                        <code style="font-size: 0.65rem; display: block; margin-top: 0.5rem; opacity: 0.7;">SAML / Azure AD</code>
+                    </div>
+                    <div style="background: linear-gradient(135deg, rgba(34,197,94,0.2), rgba(34,197,94,0.05)); padding: 1rem; border-radius: 12px; text-align: center; border: 1px solid rgba(34,197,94,0.3);">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🌐</div>
+                        <div style="font-size: 1rem; font-weight: 600; color: #22c55e;">IP 허용목록</div>
+                        <div style="font-size: 0.75rem; opacity: 0.8; margin-top: 0.3rem;">신뢰된 네트워크만</div>
+                        <code style="font-size: 0.65rem; display: block; margin-top: 0.5rem; opacity: 0.7;">회사 VPN / 오피스 IP</code>
+                    </div>
+                    <div style="background: linear-gradient(135deg, rgba(59,130,246,0.2), rgba(59,130,246,0.05)); padding: 1rem; border-radius: 12px; text-align: center; border: 1px solid rgba(59,130,246,0.3);">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">📋</div>
+                        <div style="font-size: 1rem; font-weight: 600; color: #3b82f6;">감사 로그 보관</div>
+                        <div style="font-size: 0.75rem; opacity: 0.8; margin-top: 0.3rem;">모든 활동 기록 유지</div>
+                        <code style="font-size: 0.65rem; display: block; margin-top: 0.5rem; opacity: 0.7;">최소 90일 보관</code>
+                    </div>
+                </div>
             </div>
         </div>
 
