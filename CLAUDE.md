@@ -397,8 +397,3 @@ const slideTitles = {
 `index.html`에서 `<div class="slide">` 블록의 순서를 변경하면 됨.
 `script.js`의 `slideTitles` 순서는 **변경 불필요** (data-id 기반 매핑).
 
----
-
-## Conversation
-
-모든 대화는 한국어로 이루어져야 합니다.
